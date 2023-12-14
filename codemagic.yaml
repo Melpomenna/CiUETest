@@ -1,7 +1,7 @@
 workflows:
   build:
     name: "Test build"
-    script:
+    scripts:
       - echo "Starting.."
       - echo "Running.."
       - echo "Ending!"
