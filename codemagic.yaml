@@ -1,7 +1,26 @@
 workflows:
-  build:
-    name: "Test build"
+  environment:
+    vars:
+      PROJECT_PATH: "CIUe"
+      PROJECT_NAME: "CIUe"
+      PLATFROM: "Android"
+      COMMAND_ARGS: "$PROJECT_NAME $PLATFROM Development -Project=\".\$PROJECT_PATH\$PROJECT_NAME.uproject\" -WaitMutex"
+    cache:
+      cache_paths:
+        -  C:\Program Files\Epic Games\UE_5.3\Engine\Build\BatchFiles\Build.bat
+
+  build-apk:
+    name: Build android apk
+    triggering:
+      events:
+        - push
+      cancel_previous_builds: false
     scripts:
-      - echo "Starting.."
-      - echo "Running.."
-      - echo "Ending!"
+      - Build.bat $COMMAND_ARGS
+      - cp $PROJECT_PATH/Binaries/$PLATFORM/*.apk build/$PLATFORM
+    artifacts:
+      - build/Android/*.apk
+    publishing:
+      email:
+        recipients:
+          - george.bebiya@mail.ru
