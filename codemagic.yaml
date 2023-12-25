@@ -9,7 +9,7 @@ workflows:
         - push
       cancel_previous_builds: false
     scripts:
-      - C:\Program Files\Epic Games\UE_5.3\Engine\Build\BatchFiles\Build.bat  CIUe Android Development -Project=CIUe\CIUe.uproject -WaitMutex
+      - 'C:\Program Files\Epic Games\UE_5.3\Engine\Build\BatchFiles\Build.bat'  CIUe Android Development -Project=CIUe\CIUe.uproject -WaitMutex
       - cp CIUe/Binaries/Android/*.apk build/Android
     artifacts:
       - build/Android/*.apk
